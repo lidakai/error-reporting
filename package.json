@@ -1,13 +1,13 @@
 {
-  "name": "vite-vanilla-ts-lib-starter",
+  "name": "web-reporting",
   "private": true,
   "version": "0.0.1",
-  "main": "./dist/vite-ts-lib-starter.cjs",
-  "module": "./dist/vite-ts-lib-starter.mjs",
+  "main": "./dist/web-reporting.cjs",
+  "module": "./dist/web-reporting.mjs",
   "exports": {
     ".": {
-      "require": "./dist/vite-ts-lib-starter.cjs",
-      "import": "./dist/vite-ts-lib-starter.mjs"
+      "require": "./dist/web-reporting.cjs",
+      "import": "./dist/web-reporting.mjs"
     }
   },
   "scripts": {

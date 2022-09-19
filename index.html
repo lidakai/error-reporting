@@ -4,10 +4,105 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite App</title>
+    <title>report collection plug-in</title>
+    <!-- Import style -->
+    <link rel="stylesheet" href="//unpkg.com/element-plus/dist/index.css" />
+    <!-- Import Vue 3 -->
+    <script src="//unpkg.com/vue@3"></script>
+    <!-- Import component library -->
+    <script src="//unpkg.com/element-plus"></script>
   </head>
+
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/index.ts"></script>
+    <div id="app">
+      <div class="common-layout">
+        <el-container>
+          <el-header>主动触发错误</el-header>
+          <el-main>
+            <el-row class="mb-4">
+              <el-button
+                :type="current === 'error' ? 'danger' : 'primary'"
+                @click="setCurrent('error')"
+              >
+                error</el-button
+              >
+              <el-button
+                :type="current === 'unhandledrejection' ? 'danger' : 'primary'"
+                @click="setCurrent('unhandledrejection')"
+              >
+                unhandledrejection</el-button
+              >
+              <!-- <el-button type="danger">Danger</el-button> -->
+            </el-row>
+          </el-main>
+        </el-container>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
   </body>
+  <style>
+    :root {
+      --el-color-primary: #409eff;
+      --el-color-primary-light-3: #3375b9;
+      --el-color-primary-light-5: #2a598a;
+      --el-color-primary-light-7: #213d5b;
+      --el-color-primary-light-8: #1d3043;
+      --el-color-primary-light-9: #18222c;
+      --el-text-color-primary: #e5eaf3;
+      --el-color-primary-dark-2: #66b1ff;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    .common-layout {
+      height: 100vh;
+    }
+
+    .common-layout .el-header,
+    .common-layout .el-footer {
+      background-color: var(--el-color-primary-light-7);
+      color: var(--el-text-color-primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .common-layout .el-main {
+      background-color: var(--el-color-primary-light-9);
+      color: var(--el-text-color-primary);
+      height: calc(100vh - 60px);
+      /* display: flex; */
+      /* align-items: center; */
+      /* justify-content: center; */
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+  </style>
 </html>
+<script>
+  const { createApp } = Vue;
+  createApp({
+    data() {
+      return {
+        current: "",
+      };
+    },
+    methods: {
+      setCurrent(current) {
+        if (current === "error") {
+          throw new Error("The current value is invalid.");
+        } else if (current === "unhandledrejection") {
+          Promise.reject(new Error("reject unhandledrejection"));
+        }
+        this.current = current;
+      },
+    },
+  })
+    .use(ElementPlus)
+    .mount("#app");
+</script>
