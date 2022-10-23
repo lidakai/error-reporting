@@ -10,7 +10,7 @@ const config = {
   },
   entries: [
     {
-      filePath: path.resolve(__dirname, "./example/index.ts"),
+      filePath: path.resolve(__dirname, "./libs/index.ts"),
       outFile: path.resolve(__dirname, `./dist/${getPackageName()}.d.ts`),
       noCheck: false,
     },

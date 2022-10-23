@@ -24,7 +24,7 @@ export default defineConfig({
   base: "./",
   build: {
     lib: {
-      entry: path.resolve(__dirname, "example/index.ts"),
+      entry: path.resolve(__dirname, "libs/index.ts"),
       name: getPackageNameCamelCase(),
       formats: ["es", "cjs", "iife"],
       fileName: (format) => fileName[format],
