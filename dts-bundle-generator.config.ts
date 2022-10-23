@@ -1,15 +1,17 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const packageJson = require("./package.json");
-
+const path = require("path");
 const getPackageName = () => {
   return packageJson.name;
 };
 
 const config = {
+  compilationOptions: {
+    preferredConfigPath: path.resolve(__dirname, "./tsconfig-lib.json"),
+  },
   entries: [
     {
-      filePath: "./src/index.ts",
-      outFile: `./dist/${getPackageName()}.d.ts`,
+      filePath: path.resolve(__dirname, "./example/index.ts"),
+      outFile: path.resolve(__dirname, `./dist/${getPackageName()}.d.ts`),
       noCheck: false,
     },
   ],
